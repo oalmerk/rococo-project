@@ -2,7 +2,27 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/rococo-project.iml" filepath="$PROJECT_DIR$/.idea/rococo-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-artist/rococo.rococo-artist.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-artist/rococo.rococo-artist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-artist/rococo.rococo-artist.main.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-artist/rococo.rococo-artist.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-artist/rococo.rococo-artist.test.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-artist/rococo.rococo-artist.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-auth/rococo.rococo-auth.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-auth/rococo.rococo-auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-auth/rococo.rococo-auth.main.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-auth/rococo.rococo-auth.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-auth/rococo.rococo-auth.test.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-auth/rococo.rococo-auth.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-gateway/rococo.rococo-gateway.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-gateway/rococo.rococo-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-gateway/rococo.rococo-gateway.main.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-gateway/rococo.rococo-gateway.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-gateway/rococo.rococo-gateway.test.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-gateway/rococo.rococo-gateway.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-grpc-common/rococo.rococo-grpc-common.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-grpc-common/rococo.rococo-grpc-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-grpc-common/rococo.rococo-grpc-common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-grpc-common/rococo.rococo-grpc-common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-grpc-common/rococo.rococo-grpc-common.test.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-grpc-common/rococo.rococo-grpc-common.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-museum/rococo.rococo-museum.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-museum/rococo.rococo-museum.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-museum/rococo.rococo-museum.main.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-museum/rococo.rococo-museum.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-museum/rococo.rococo-museum.test.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-museum/rococo.rococo-museum.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-painting/rococo.rococo-painting.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-painting/rococo.rococo-painting.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-painting/rococo.rococo-painting.main.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-painting/rococo.rococo-painting.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-painting/rococo.rococo-painting.test.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-painting/rococo.rococo-painting.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo.test.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo.test.iml" />
     </modules>
   </component>
 </project>
