@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package olmerk.grpc.rococo;
+
+option java_multiple_files = true;
+option java_package = "olmerk.grpc.rococo";
+option java_outer_classname = "RococoUserdataProto";
+
+service RococoUserdataService {
+  rpc GetUser (GetUserRequest) returns (UserResponse) {}
+  rpc UpdateUser (UpdateUserRequest) returns (UserResponse) {}
+}
+
+message GetUserRequest {
+  string username = 1;
+}
+
+message UserResponse {
+  User user = 1;
+}
+
+message UpdateUserRequest {
+  User user = 1;
+}
+
+message User {
+  string id = 1;
+  string username = 2;
+  optional string firstname = 3;
+  optional string lastname = 4;
+  optional string avatar = 5;
+}

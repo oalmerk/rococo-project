@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package olmerk.grpc.rococo;
+
+option java_multiple_files = true;
+option java_package = "olmerk.grpc.rococo";
+option java_outer_classname = "RococoArtistProto";
+
+service RococoArtistService {
+  rpc GetAllArtists (ArtistsRequest) returns (ArtistsResponse) {}
+  rpc GetArtist (GetArtistRequest) returns (ArtistResponse) {}
+  rpc CreateArtist(CreateArtistRequest) returns (ArtistResponse);
+  rpc UpdateArtist(CreateArtistRequest) returns (ArtistResponse);
+}
+
+
+message ArtistsRequest {
+  optional string name = 1;
+  int32 page = 2;
+  int32 size = 3;
+}
+
+message ArtistsResponse {
+  repeated Artist artists = 1;
+  int32 total_count = 2;
+}
+
+message ArtistResponse {
+  Artist artist = 1;
+}
+
+message GetArtistRequest {
+  string id = 1;
+}
+
+
+message CreateArtistRequest {
+  string name = 1;
+  string biography = 2;
+  string photo = 3;
+}
+
+message Artist {
+  string id = 1;
+  string name = 2;
+  optional string biography = 3;
+  optional string photo = 4;
+}
