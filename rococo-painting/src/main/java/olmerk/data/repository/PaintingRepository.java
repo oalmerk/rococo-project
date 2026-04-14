@@ -11,17 +11,18 @@ import java.util.UUID;
 
 
 public interface PaintingRepository extends JpaRepository<PaintingEntity, UUID> {
-    Page<PaintingEntity> findAll(Pageable pageable);
+    @Nonnull
+    Optional<PaintingEntity> findByTitle(@Nonnull String title);
 
     @Nonnull
-    Optional<PaintingEntity> findByNameContainsIgnoreCase(String name);
-
-    @Nonnull
-    Page<PaintingEntity> findAllByNameContainsIgnoreCase(
-            @Nonnull String name,
+    Page<PaintingEntity> findAllByTitleContainingIgnoreCase(
+            @Nonnull String title,
             @Nonnull Pageable pageable
     );
 
     @Nonnull
-    Optional<PaintingEntity> findAllByName(@Nonnull String name);
+    Page<PaintingEntity> findAllByArtistId(
+            @Nonnull UUID title,
+            @Nonnull Pageable pageable
+    );
 }

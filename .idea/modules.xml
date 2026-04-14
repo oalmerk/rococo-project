@@ -22,6 +22,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-painting/rococo.rococo-painting.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-painting/rococo.rococo-painting.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-painting/rococo.rococo-painting.main.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-painting/rococo.rococo-painting.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-painting/rococo.rococo-painting.test.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-painting/rococo.rococo-painting.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-userdata/rococo.rococo-userdata.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-userdata/rococo.rococo-userdata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-userdata/rococo.rococo-userdata.main.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-userdata/rococo.rococo-userdata.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-userdata/rococo.rococo-userdata.test.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-userdata/rococo.rococo-userdata.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo.test.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo.test.iml" />
     </modules>
   </component>

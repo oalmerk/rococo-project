@@ -9,8 +9,8 @@ import org.springframework.grpc.server.service.GrpcService;
 import org.springframework.transaction.annotation.Transactional;
 import olmerk.data.ArtistEntity;
 import olmerk.data.repository.ArtistRepository;
-import olmerk.ex.ArtistNotFoundException;
-import olmerk.ex.GrpcExceptionMapper;
+import olmerk.exception.ArtistNotFoundException;
+import olmerk.exception.GrpcExceptionMapper;
 import olmerk.grpc.rococo.*;
 
 import java.nio.charset.StandardCharsets;

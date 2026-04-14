@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import olmerk.data.MuseumEntity;
 import olmerk.data.repository.CountryRepository;
 import olmerk.data.repository.MuseumRepository;
-import olmerk.ex.CountryNotFoundException;
-import olmerk.ex.GrpcExceptionMapper;
-import olmerk.ex.MuseumNotFoundException;
+import olmerk.exception.CountryNotFoundException;
+import olmerk.exception.GrpcExceptionMapper;
+import olmerk.exception.MuseumNotFoundException;
 import olmerk.grpc.rococo.*;
 
 import java.nio.charset.StandardCharsets;
