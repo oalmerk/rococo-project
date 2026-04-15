@@ -1,8 +1,8 @@
 package olmerk;
 
+import olmerk.service.PropertiesLogger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import olmerk.service.PropertiesLogger;
 
 @SpringBootApplication
 public class RococoPaintingService {

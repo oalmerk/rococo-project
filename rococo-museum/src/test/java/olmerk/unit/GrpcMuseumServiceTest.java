@@ -245,4 +245,3 @@ class GrpcMuseumServiceTest {
         assertFalse(GrpcMuseumService.isPhotoString(null));
     }
 }
-

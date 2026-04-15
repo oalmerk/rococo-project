@@ -2,20 +2,19 @@ package olmerk.service;
 
 import io.grpc.stub.StreamObserver;
 import jakarta.annotation.Nonnull;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.grpc.server.service.GrpcService;
-import org.springframework.transaction.annotation.Transactional;
 import olmerk.data.PaintingEntity;
 import olmerk.data.repository.PaintingRepository;
 import olmerk.exception.GrpcPaintingExceptionMapper;
 import olmerk.exception.PaintingNotFoundException;
 import olmerk.grpc.rococo.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.grpc.server.service.GrpcService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
-
 
 @GrpcService
 public class GrpcPaintingService extends RococoPaintingServiceGrpc.RococoPaintingServiceImplBase {

@@ -91,4 +91,3 @@ class GrpcCountryServiceTest {
         assertEquals(0, response.getCountryCount());
     }
 }
-

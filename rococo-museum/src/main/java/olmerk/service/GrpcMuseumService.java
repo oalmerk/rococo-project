@@ -18,7 +18,6 @@ import olmerk.grpc.rococo.*;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
-
 @GrpcService
 public class GrpcMuseumService extends RococoMuseumServiceGrpc.RococoMuseumServiceImplBase {
 

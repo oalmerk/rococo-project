@@ -13,7 +13,6 @@ import olmerk.grpc.rococo.Country;
 import olmerk.grpc.rococo.CountryRequest;
 import olmerk.grpc.rococo.RococoCountryServiceGrpc;
 
-
 @GrpcService
 public class GrpcCountryService extends RococoCountryServiceGrpc.RococoCountryServiceImplBase {
 
@@ -23,7 +22,6 @@ public class GrpcCountryService extends RococoCountryServiceGrpc.RococoCountrySe
     public GrpcCountryService(CountryRepository countryRepository) {
         this.countryRepository = countryRepository;
     }
-
 
     @Override
     @Transactional(readOnly = true)

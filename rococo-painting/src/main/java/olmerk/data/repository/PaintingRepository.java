@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 import java.util.UUID;
 
-
 public interface PaintingRepository extends JpaRepository<PaintingEntity, UUID> {
     @Nonnull
     Optional<PaintingEntity> findByTitle(@Nonnull String title);
