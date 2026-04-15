@@ -1,0 +1,3 @@
+olmerk.rococo.jupiter.extension.TestMethodContextExtension
+olmerk.rococo.jupiter.extension.CookieStoreExtension
+olmerk.rococo.jupiter.extension.DatabasesExtension

@@ -1,15 +1,10 @@
 rootProject.name = 'rococo'
-
 include 'rococo-gateway'
 include 'rococo-auth'
-
-include 'rococo-grpc-common'
-
 include 'rococo-artist'
 include 'rococo-museum'
 include 'rococo-painting'
 include 'rococo-userdata'
-
 include 'rococo-grpc-common'
-findProject(':rococo-grpc-common:rococo-grpc-common')?.name = 'rococo-grpc-common'
-//include 'rococo-e-2-e-tests'
+//findProject(':rococo-grpc-common:rococo-grpc-common')?.name = 'rococo-grpc-common'
+include 'rococo-e-2-e-tests'
