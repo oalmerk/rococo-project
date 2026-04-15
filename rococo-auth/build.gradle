@@ -1,9 +1,10 @@
 plugins {
-    id 'org.springframework.boot' version '3.5.8'
+    id 'org.springframework.boot' version '3.4.4'
+    id 'com.google.cloud.tools.jib' version '3.4.1'
 }
 
-group = 'io.student'
-version = '1.0.0'
+group = 'olmerk'
+version = '1.0'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -12,12 +13,49 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.session:spring-session-jdbc'
+    implementation "org.springframework.kafka:spring-kafka:${project.ext.springKafkaVersion}"
+    implementation "org.springframework.cloud:spring-cloud-starter-vault-config:${project.ext.springVaultVersion}"
     implementation "org.flywaydb:flyway-core:${project.ext.flywayVersion}"
-    implementation "org.flywaydb:flyway-mysql:${project.ext.flywayVersion}"
+    implementation "org.flywaydb:flyway-database-postgresql:${project.ext.flywayVersion}"
     annotationProcessor "org.projectlombok:lombok:${project.ext.lombokVersion}"
     compileOnly "org.projectlombok:lombok:${project.ext.lombokVersion}"
-//    runtimeOnly "mysql:mysql-connector-java:${project.ext.mysqlDriverVersion}"
+    runtimeOnly "org.postgresql:postgresql:${project.ext.postgresDriverVersion}"
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation "com.h2database:h2:${project.ext.h2Version}"
 }
+
+jib {
+    container {
+        ports = ['9000']
+        jvmFlags = ["-Dspring.profiles.active=${System.env.PROFILE}"]
+        environment = [
+                'VAULT_TOKEN': "${System.env.VAULT_TOKEN}".toString(),
+                'TZ'         : 'Europe/Moscow'
+        ]
+        creationTime = 'USE_CURRENT_TIMESTAMP'
+        labels = [
+                'version'   : "${project.version}".toString()
+        ]
+    }
+    from {
+        image = "${project.ext.dockerImage}"
+        platforms {
+            platform {
+                architecture = "${project.ext.dockerArch}"
+                os = 'linux'
+            }
+        }
+    }
+    to {
+        image = "${project.ext.dockerHubName}/${project.name}-${System.env.PROFILE}"
+        tags = ['latest']
+    }
+}
+
+tasks.jibDockerBuild.dependsOn test
 
 tasks.register('printVersion') {
     doLast {

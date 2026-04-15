@@ -16,17 +16,10 @@ export let toggleMenu: () => void;
 
 const modalStore = getModalStore();
 
-const toggleTheme = () => {
-    try {
-        setTimeout(() => {
-            const isDark = document.documentElement.classList.contains('dark');
-            localStorage.setItem('rococo-theme', isDark ? 'dark' : 'light');
-        }, 0);
-    } catch (e) {}
-}
-
 const onLoginClick = async () => {
+    console.log("Нажата кнопка Войти");
     await initLocalStorageAndRedirectToAuth();
+    console.log("После вызова initLocalStorageAndRedirectToAuth");
 }
 
 const updateProfileCallback = async (result: {
@@ -59,13 +52,14 @@ const clickProfileButton = () => {
 }
 
 </script>
-
+<div class="pointer-events-auto relative z-50">
 <button type="button" class="block md:hidden shrink-0" on:click={toggleMenu}>
     <img src={MenuIcon} alt="Иконка меню" class="w-50 h-50 md:hidden" width="50" height="50"/>
 </button>
+</div>
 <PagesNavigation isBigScreen={true}/>
 <div>
-    <LightSwitch rounded="rounded-full" on:click={toggleTheme}/>
+    <LightSwitch rounded="rounded-full"/>
 </div>
 {#if $sessionStore.isLoading}
     <div class="placeholder-circle w-10" />

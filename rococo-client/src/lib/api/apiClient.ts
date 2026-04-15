@@ -37,7 +37,7 @@ export const apiClient = {
             body: JSON.stringify(artist),
         });
     },
-    loadPaintings: async({ page = 0, size = 9, search}: {
+    loadPaintings: async({ page = 0, size = 15, search}: {
         page?: number,
         size?: number,
         search?: string
@@ -49,7 +49,7 @@ export const apiClient = {
             authenticated: false,
         });
     },
-    loadPaintingsByAuthorId: async({ authorId, page = 0, size = 9, search}: {
+    loadPaintingsByAuthorId: async({ authorId, page = 0, size = 15, search}: {
         authorId: string,
         page?: number,
         size?: number,
@@ -84,7 +84,7 @@ export const apiClient = {
             body: JSON.stringify(painting),
         });
     },
-    loadMuseums: async({ page = 0, size = 4, search}: {
+    loadMuseums: async({ page = 0, size = 15, search}: {
             page?: number,
             size?: number,
             search?: string
@@ -117,7 +117,7 @@ export const apiClient = {
             body: JSON.stringify(museum),
         });
     },
-    loadCountries: async({page = 0, size = 20}: {
+    loadCountries: async({page = 0, size = 200}: {
         page?: number,
         size?: number,
     }) => {

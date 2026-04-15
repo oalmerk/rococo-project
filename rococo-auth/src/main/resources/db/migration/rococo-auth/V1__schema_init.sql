@@ -1,6 +1,8 @@
-create table if not exists `user`
+create extension if not exists "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+create table if not exists "users"
 (
-    id                      binary(16) unique  not null default (UUID_TO_BIN(UUID(), true)),
+    id                      UUID unique        not null default  gen_random_uuid(),
     username                varchar(50) unique not null,
     password                varchar(255)       not null,
     enabled                 boolean            not null,
@@ -8,13 +10,20 @@ create table if not exists `user`
     account_non_locked      boolean            not null,
     credentials_non_expired boolean            not null,
     primary key (id, username)
-);
+    );
 
-create table if not exists `authority`
+alter table "users"
+    owner to postgres;
+
+create table if not exists "authorities"
 (
-    id        binary(16) unique      not null default (UUID_TO_BIN(UUID(), true)),
-    user_id   binary(16)             not null,
-    authority enum ('read', 'write') not null,
-    primary key (id),
-    constraint fk_authorities_users foreign key (user_id) references `user` (id)
-);
+    id        UUID unique not null default  gen_random_uuid() primary key,
+    user_id   UUID        not null,
+    authority varchar(50) not null,
+    constraint fk_authorities_users foreign key (user_id) references "users" (id)
+    );
+
+alter table "authorities"
+    owner to postgres;
+
+create unique index if not exists ix_auth_username on "authorities" (user_id, authority);

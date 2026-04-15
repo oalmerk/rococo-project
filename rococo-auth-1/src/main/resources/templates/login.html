@@ -2,8 +2,8 @@
 <html xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" lang="ru">
 <head>
     <title>Rococo</title>
-    <link rel="icon" th:href="@{images/favicon.ico}"/>
-    <link th:href="@{styles/styles.css}" rel="stylesheet" type="text/css"/>
+    <link rel="icon" th:href="@{/images/favicon.ico}"/>
+    <link th:href="@{/styles/styles.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <main>
@@ -31,7 +31,7 @@
                 </button>
                 <p class="form__paragraph">Нет аккаунта? <a th:href="@{/register}" class="form__link">Зарегистрироваться</a></p>
             </form>
-            <img class="content__image" src="../static/images/hermitage.jpg" th:src="@{images/hermitage.jpg}" alt="Эрмитаж"/>
+            <img class="content__image" src="../static/images/hermitage.jpg" th:src="@{/images/hermitage.jpg}" alt="Эрмитаж"/>
         </section>
     </div>
 </main>

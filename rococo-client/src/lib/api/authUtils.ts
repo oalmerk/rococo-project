@@ -2,7 +2,7 @@ import * as crypto from "crypto-js";
 import sha256 from "crypto-js/sha256";
 import Base64 from "crypto-js/enc-base64";
 import {sessionStore} from "$lib/stores/sessionStore";
-import {goto} from "$app/navigation";
+
 
 const AUTH_URL = `${import.meta.env.VITE_AUTH_URL}`;
 const FRONT_URL = `${import.meta.env.VITE_FRONT_URL}`;
@@ -50,7 +50,7 @@ const initLocalStorageAndRedirectToAuth = async () => {
     localStorage.setItem('codeChallenge', codeChallenge);
 
     const link = getAuthLink(codeChallenge);
-    await goto(link);
+    window.location.href = link;;
 }
 
 const clearSession = () => {
