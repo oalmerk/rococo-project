@@ -1,8 +1,8 @@
 package olmerk.data.repository;
 
 import jakarta.annotation.Nonnull;
-import org.springframework.data.jpa.repository.JpaRepository;
 import olmerk.data.UserEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 import java.util.UUID;

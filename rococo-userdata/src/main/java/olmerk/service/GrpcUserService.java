@@ -98,4 +98,3 @@ public class GrpcUserService extends RococoUserdataServiceGrpc.RococoUserdataSer
         return grpcUserBuilder.build();
     }
 }
-

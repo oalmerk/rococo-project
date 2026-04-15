@@ -1,13 +1,6 @@
 package olmerk.unit;
 
 import io.grpc.stub.StreamObserver;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import olmerk.data.UserEntity;
 import olmerk.data.repository.UserRepository;
 import olmerk.exception.UserNotFoundException;
@@ -16,6 +9,13 @@ import olmerk.grpc.rococo.UpdateUserRequest;
 import olmerk.grpc.rococo.User;
 import olmerk.grpc.rococo.UserResponse;
 import olmerk.service.GrpcUserService;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
@@ -175,4 +175,3 @@ class GrpcUserServiceTest {
         assertFalse(GrpcUserService.isPhotoString(null));
     }
 }
-
