@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
 		plugins: [sveltekit(), purgeCss()],
 		server: {
 			host: process.env.VITE_FRONT_HOST,
-			port: 3000,
+			port: process.env.VITE_PORT,
 		},
 	});
 });
