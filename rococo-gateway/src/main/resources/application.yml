@@ -4,47 +4,111 @@ server:
 spring:
   application:
     name: rococo-gateway
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: 'http://localhost:9000'
-  datasource:
-    url: 'jdbc:mysql://localhost:3306/rococo-gateway?serverTimezone=UTC&createDatabaseIfNotExist=true'
-    hikari:
-      connection-timeout: 20000
-      minimum-idle: 10
-      maximum-pool-size: 30
-      idle-timeout: 10000
-      max-lifetime: 1000
-      auto-commit: true
-    username: root
-    password: secret
-  flyway:
-    enabled: true
-    baseline-on-migrate: true
-    baseline-version: 0
-    schemas: rococo-gateway
-    locations: classpath:db/migration/rococo-gateway
-  jpa:
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate:
-        jdbc:
-          lob:
-            non_contextual_creation: true
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-    show-sql: false
-    generate-ddl: true
-    open-in-view: false
 
 logging:
   level:
     root: INFO
-    org.springframework.web: DEBUG
-    org.springframework.security: DEBUG
-    org.springframework.security.oauth2: DEBUG
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: INFO
+    net.devh.boot.grpc: INFO
+    org.springframework.boot.autoconfigure: INFO
+  file:
+    path: ./logs/rococo-gateway
 
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  autoconfigure:
+    exclude:
+      - "org.springframework.cloud.vault.config.VaultAutoConfiguration"
+      - "org.springframework.cloud.vault.config.VaultObservationAutoConfiguration"
+      - "org.springframework.cloud.vault.config.VaultReactiveAutoConfiguration"
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://127.0.0.1:9000
+  grpc:
+    client:
+      channels:
+        rococo-userdata:
+          address: 'static://127.0.0.1:8090'
+          negotiation-type: plaintext
+        rococo-artist:
+          address: 'static://127.0.0.1:8092'
+          negotiation-type: plaintext
+        rococo-painting:
+          address: 'static://127.0.0.1:8096'
+          negotiation-type: plaintext
+        rococo-museum:
+          address: 'static://127.0.0.1:8095'
+          negotiation-type: plaintext
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+  file:
+    path: ./logs/rococo-gateway
+
+rococo-artist:
+  base-uri: 'http://127.0.0.1:8091'
+rococo-userdata:
+  base-uri: 'http://127.0.0.1:8089'
+rococo-museum:
+  base-uri: 'http://127.0.0.1:8093'
+rococo-painting:
+  base-uri: 'http://127.0.0.1:8094'
 rococo-front:
-  base-uri: 'http://localhost:3000'
+  base-uri: 'http://127.0.0.1:3000'
+rococo-gateway:
+  base-uri: 'http://127.0.0.1:8080'
+---
+
+spring:
+  config:
+    activate:
+      on-profile: 'docker'
+  autoconfigure:
+    exclude:
+      - 'org.springframework.cloud.vault.config.VaultAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultObservationAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultReactiveAutoConfiguration'
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: 'http://auth.rococo.dc:9000'
+  grpc:
+    client:
+      channels:
+        rococo-userdata:
+          address: 'static://userdata.rococo.dc:8090'
+          negotiation-type: plaintext
+        rococo-artist:
+          address: 'static://artist.rococo.dc:8092'
+          negotiation-type: plaintext
+        rococo-painting:
+          address: 'static://painting.rococo.dc:8096'
+          negotiation-type: plaintext
+        rococo-museum:
+          address: 'static://museum.rococo.dc:8095'
+          negotiation-type: plaintext
+
+rococo-artist:
+  base-uri: 'http://artist.rococo.dc:8091'
+rococo-userdata:
+  base-uri: 'http://userdata.rococo.dc:8089'
+rococo-museum:
+  base-uri: 'http://museum.rococo.dc:8093'
+rococo-painting:
+  base-uri: 'http://painting.rococo.dc:8094'
+rococo-front:
+  base-uri: 'http://frontend.rococo.dc'
+rococo-gateway:
+  base-uri: 'http://gateway.rococo.dc:8080'
+---

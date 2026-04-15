@@ -1,22 +1,121 @@
 plugins {
     id 'org.springframework.boot' version '3.5.8'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'com.google.protobuf' version '0.9.5'
+    id 'com.google.cloud.tools.jib' version '3.4.1'
+    id 'com.github.edeandrea.xjc-generation' version '1.6'
 }
 
-group = 'io.student'
-version = '1.0.0'
+group = 'olmerk'
+version = '1.0'
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.grpc:spring-grpc-dependencies:0.9.0-SNAPSHOT'
+    }
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 
 dependencies {
+    implementation project(':rococo-grpc-common')
+    implementation('org.springframework.grpc:spring-grpc-client-spring-boot-starter')
+    implementation "com.google.protobuf:protobuf-java-util:${dependencyManagement.importedProperties['protobuf-java.version']}"
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-    annotationProcessor "org.projectlombok:lombok:${project.ext.lombokVersion}"
-    compileOnly "org.projectlombok:lombok:${project.ext.lombokVersion}"
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${project.ext.springOpenApiVersion}"
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    implementation 'org.springframework.ws:spring-ws-core'
+    implementation 'org.springframework.data:spring-data-commons'
+    xjc "org.glassfish.jaxb:jaxb-xjc:${project.ext.jakartaJaxbVersion}"
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation "org.springframework.security:spring-security-test:${project.ext.springSecurityTestVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${project.ext.lombokVersion}"
+    testCompileOnly "org.projectlombok:lombok:${project.ext.lombokVersion}"
+}
+
+
+
+
+sourceSets {
+    main {
+        java {
+            srcDir('src/main/java')
+            srcDir("$buildDir/generated-sources/main/xjc")
+        }
+    }
+}
+
+jib {
+    container {
+        ports = ['8080']
+        jvmFlags = ["-Dspring.profiles.active=${System.env.PROFILE}"]
+        environment = [
+                'VAULT_TOKEN': "${System.env.VAULT_TOKEN}".toString(),
+                'TZ'         : 'Europe/Moscow'
+        ]
+        creationTime = 'USE_CURRENT_TIMESTAMP'
+        labels = [
+                'version'   : "${project.version}".toString()
+        ]
+    }
+    from {
+        image = "${project.ext.dockerImage}"
+        platforms {
+            platform {
+                architecture = "${project.ext.dockerArch}"
+                os = 'linux'
+            }
+        }
+    }
+    to {
+        image = "${project.ext.dockerHubName}/${project.name}-${System.env.PROFILE}"
+        tags = ['latest']
+    }
+}
+
+tasks.jibDockerBuild.dependsOn test
+
+tasks.named('bootJar') {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 tasks.register('printVersion') {
     doLast {
         println project.version
+    }
+}
+
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${dependencyManagement.importedProperties['protobuf-java.version']}"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:${dependencyManagement.importedProperties['grpc.version']}"
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {
+                option 'jakarta_omit'
+                option '@generated=omit'
+            }
+        }
     }
 }
