@@ -11,7 +11,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-auth/rococo.rococo-auth.main.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-auth/rococo.rococo-auth.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-auth/rococo.rococo-auth.test.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-auth/rococo.rococo-auth.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-e2e-tests/rococo.rococo-e-2-e-tests.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-e2e-tests/rococo.rococo-e-2-e-tests.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-e-2-e-tests/rococo.rococo-e-2-e-tests.main.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-e-2-e-tests/rococo.rococo-e-2-e-tests.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-e-2-e-tests/rococo.rococo-e-2-e-tests.test.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-e-2-e-tests/rococo.rococo-e-2-e-tests.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-gateway/rococo.rococo-gateway.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-gateway/rococo.rococo-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/rococo-gateway/rococo.rococo-gateway.main.iml" filepath="$PROJECT_DIR$/.idea/modules/rococo-gateway/rococo.rococo-gateway.main.iml" />
