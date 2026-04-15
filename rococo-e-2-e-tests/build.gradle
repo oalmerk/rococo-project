@@ -1,0 +1,139 @@
+buildscript {
+    ext {
+        junitVersion = '5.10.0'
+        allureVersion = '2.24.0'
+        selenideVersion = '7.9.3'
+        okhttp3Version = '4.12.0'
+        retrofitVersion = '2.11.0'
+        apollographqlVersion = '0.0.2'
+        logbackVersion = '1.4.11'
+        slf4jVersion = '2.0.9'
+        springJdbcVersion = '6.2.6'
+        springCryptoVersion = '6.4.5'
+        p6spyVersion = '3.9.1'
+        hibernateVersion = '6.6.13.Final'
+        kafkaClientsVersion = '4.0.0'
+        saajVersion = '3.0.4'
+        springDataCommonsVersion = '3.4.4'
+        atomicosVersion = '6.0.0'
+        wiremockVersion = '3.12.1'
+        fakerVersion = '1.0.2'
+        ashotVersion = '1.5.4'
+    }
+}
+
+plugins {
+    id 'io.qameta.allure' version '2.12.0'
+    id 'io.qameta.allure-adapter' version '2.12.0'
+    id 'com.github.edeandrea.xjc-generation' version '1.6'
+    id 'com.apollographql.apollo' version '4.1.1'
+}
+
+group = 'olmerk'
+version = '1.0.0'
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.grpc:spring-grpc-dependencies:0.9.0-SNAPSHOT'
+    }
+}
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+    // Logs
+    testImplementation "ch.qos.logback:logback-classic:${logbackVersion}"
+    testImplementation "org.slf4j:slf4j-api:${slf4jVersion}"
+    // JUnit
+    testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
+    // REST
+    testImplementation "com.squareup.okhttp3:logging-interceptor:${okhttp3Version}"
+    testImplementation "com.squareup.okhttp3:okhttp-urlconnection:${okhttp3Version}"
+    testImplementation "com.squareup.okhttp3:okhttp:${okhttp3Version}"
+    testImplementation("com.squareup.retrofit2:retrofit:${retrofitVersion}") {
+        exclude group: "com.squareup.okhttp3"
+    }
+    testImplementation("com.squareup.retrofit2:converter-jackson:${retrofitVersion}") {
+        exclude group: "com.squareup.okhttp3"
+    }
+    testImplementation "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
+    testImplementation "org.springframework.data:spring-data-commons:${springDataCommonsVersion}"
+    // DB
+    testImplementation "org.springframework:spring-jdbc:${springJdbcVersion}"
+    testImplementation "org.postgresql:postgresql:${project.ext.postgresDriverVersion}"
+    testImplementation "com.atomikos:transactions-jta:${atomicosVersion}:jakarta"
+    testImplementation "com.atomikos:transactions-hibernate4:${atomicosVersion}:jakarta"
+    testImplementation "com.atomikos:transactions-jdbc:${atomicosVersion}"
+    testImplementation "p6spy:p6spy:${p6spyVersion}"
+    testImplementation "org.hibernate:hibernate-core:${hibernateVersion}"
+    testImplementation "org.springframework.security:spring-security-crypto:${springCryptoVersion}"
+    // Allure
+    testImplementation "io.qameta.allure:allure-attachments:${allureVersion}"
+    testImplementation("io.qameta.allure:allure-junit5:${allureVersion}") {
+        exclude group: "org.junit.jupiter"
+    }
+    testImplementation("io.qameta.allure:allure-selenide:${allureVersion}") {
+        exclude group: 'com.codeborne'
+    }
+    testImplementation "io.qameta.allure:allure-okhttp3:${allureVersion}"
+    testImplementation "io.qameta.allure:allure-grpc:${allureVersion}"
+    // WEB
+    testImplementation "com.codeborne:selenide:${selenideVersion}"
+    // Utils
+    testImplementation "ru.yandex.qatools.ashot:ashot:${ashotVersion}"
+    testImplementation("com.github.javafaker:javafaker:${fakerVersion}") {
+        exclude group: 'org.yaml'
+    }
+    testImplementation 'commons-io:commons-io:2.19.0'
+    testImplementation 'com.google.code.findbugs:jsr305:3.0.2'
+    testImplementation 'com.github.vertical-blank:sql-formatter:2.0.5'
+    testImplementation 'com.github.h-thurow:simple-jndi:0.24.0'
+
+    // gRPC
+    implementation('org.springframework.grpc:spring-grpc-client-spring-boot-starter')
+    implementation "com.google.protobuf:protobuf-java-util:${dependencyManagement.importedProperties['protobuf-java.version']}"
+    testImplementation project(':rococo-grpc-common')
+    compileOnly 'jakarta.annotation:jakarta.annotation-api:1.3.5' // Java 9+ compatibility - Do NOT update to 2.0.0
+    // Kafka
+    testImplementation "org.apache.kafka:kafka-clients:${kafkaClientsVersion}"
+    // Wiremock
+    testImplementation "org.wiremock:wiremock:${project.ext.wiremockVersion}"
+    // Lombok
+    testAnnotationProcessor "org.projectlombok:lombok:${project.ext.lombokVersion}"
+    testCompileOnly "org.projectlombok:lombok:${project.ext.lombokVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.register('printVersion') {
+    doLast {
+        println project.version
+    }
+}
+
+allure {
+    version.set("${allureVersion}")
+    adapter {
+        aspectjVersion.set("1.9.22")
+        aspectjWeaver.set(true)
+    }
+}
+
+sourceSets {
+    test {
+        java {
+            srcDir('src/test/java')
+            srcDir("$buildDir/generated-sources/test/xjc")
+            srcDir("$buildDir/generated/source/apollo/niffler")
+        }
+    }
+}
