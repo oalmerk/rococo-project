@@ -10,7 +10,6 @@ import olmerk.rococo.model.CountryJson;
 
 import java.util.List;
 
-
 @Service
 public class GrpcCountryClient {
 

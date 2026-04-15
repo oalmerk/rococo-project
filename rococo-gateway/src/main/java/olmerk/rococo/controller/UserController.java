@@ -10,7 +10,6 @@ import olmerk.rococo.config.RococoGatewayServiceConfig;
 import olmerk.rococo.model.UserJson;
 import olmerk.rococo.service.api.GrpcUserdataClient;
 
-
 @RestController
 @RequestMapping("/api/user")
 @SecurityRequirement(name = RococoGatewayServiceConfig.OPEN_API_AUTH_SCHEME)
@@ -35,4 +34,3 @@ public class UserController {
         return grpcUserdataClient.upDateUser(user);
     }
 }
-

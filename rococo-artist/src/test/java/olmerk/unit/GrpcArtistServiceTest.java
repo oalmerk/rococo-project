@@ -242,4 +242,3 @@ public class GrpcArtistServiceTest {
         verify(artistResponseObserver, never()).onCompleted();
     }
 }
-

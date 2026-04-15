@@ -5,9 +5,6 @@ import jakarta.annotation.Nonnull;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import olmerk.grpc.rococo.Geo;
-import olmerk.grpc.rococo.Museum;
-
-import java.util.UUID;
 
 public record GeoJson(@JsonProperty("country")
                       CountryJson country,

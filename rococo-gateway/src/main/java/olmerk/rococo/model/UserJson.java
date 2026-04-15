@@ -6,7 +6,6 @@ import jakarta.annotation.Nonnull;
 import jakarta.validation.constraints.Size;
 import olmerk.grpc.rococo.User;
 import olmerk.rococo.validation.IsPhotoString;
-import olmerk.rococo.validation.IsUuidString;
 
 import java.util.UUID;
 

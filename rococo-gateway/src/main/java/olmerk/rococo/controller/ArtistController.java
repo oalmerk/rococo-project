@@ -2,19 +2,15 @@ package olmerk.rococo.controller;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
+import olmerk.rococo.config.RococoGatewayServiceConfig;
+import olmerk.rococo.model.ArtistJson;
+import olmerk.rococo.service.api.GrpcArtistClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
-import olmerk.rococo.config.RococoGatewayServiceConfig;
-import olmerk.rococo.model.ArtistJson;
-import olmerk.rococo.model.PaintingJson;
-import olmerk.rococo.service.api.GrpcArtistClient;
 
 import java.util.List;
 
@@ -54,4 +50,3 @@ public class ArtistController {
         return artistClient.updateArtist(artistJson);
     }
 }
-

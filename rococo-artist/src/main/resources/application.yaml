@@ -5,8 +5,6 @@ server:
       - org.springframework.boot.autoconfigure.grpc.server.security.GrpcSecurityAutoConfiguration
       - org.springframework.grpc.autoconfigure.server.security.GrpcSecurityAutoConfiguration
 
-
-
 spring:
   application:
     name: rococo-artist
@@ -73,8 +71,6 @@ spring:
       max-inbound-message-size: 1MB
       security:
         enabled: false
-
-
 
 ---
 spring:

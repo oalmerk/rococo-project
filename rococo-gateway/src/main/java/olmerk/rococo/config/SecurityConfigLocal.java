@@ -1,7 +1,5 @@
 package olmerk.rococo.config;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.grpc.server.security.GrpcSecurity;
 import olmerk.rococo.service.cors.CorsCustomizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

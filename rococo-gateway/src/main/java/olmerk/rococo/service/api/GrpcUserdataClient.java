@@ -1,12 +1,12 @@
 package olmerk.rococo.service.api;
 
 import jakarta.annotation.Nonnull;
-import org.springframework.grpc.client.GrpcChannelFactory;
-import org.springframework.stereotype.Service;
 import olmerk.grpc.rococo.GetUserRequest;
 import olmerk.grpc.rococo.RococoUserdataServiceGrpc;
 import olmerk.grpc.rococo.UpdateUserRequest;
 import olmerk.rococo.model.UserJson;
+import org.springframework.grpc.client.GrpcChannelFactory;
+import org.springframework.stereotype.Service;
 
 @Service
 public class GrpcUserdataClient {

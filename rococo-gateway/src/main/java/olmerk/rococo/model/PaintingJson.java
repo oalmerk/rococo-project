@@ -4,10 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.annotation.Nonnull;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import olmerk.grpc.rococo.Museum;
 import olmerk.grpc.rococo.Painting;
 import olmerk.rococo.validation.IsPhotoString;
-import olmerk.rococo.validation.IsUuidString;
 
 import java.util.UUID;
 

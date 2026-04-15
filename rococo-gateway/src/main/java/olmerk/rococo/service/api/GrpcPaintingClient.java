@@ -1,13 +1,11 @@
 package olmerk.rococo.service.api;
 
 import jakarta.annotation.Nonnull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import olmerk.grpc.rococo.*;
+import olmerk.rococo.model.PaintingJson;
 import org.springframework.data.domain.Pageable;
 import org.springframework.grpc.client.GrpcChannelFactory;
 import org.springframework.stereotype.Service;
-import olmerk.grpc.rococo.*;
-import olmerk.rococo.model.PaintingJson;
 
 import java.util.List;
 
